@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3f3f3">
+  <title>对比 · 电库图鉴</title>
+  <meta name="description" content="最多三款充电宝并排对比：容量、能量、输入输出功率、接口与曲线读数。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="对比 · 电库图鉴">
+  <meta property="og:description" content="三款以内，直接对表。">
+  <meta property="og:image" content="assets/img/og-cover.png">
+  <link rel="icon" href="assets/img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261049">
+  <link rel="stylesheet" href="assets/css/fluent.css?v=20261110">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var saved = localStorage.getItem('atlas-theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    })();
+  </script>
+  <script src="assets/js/charts.js?v=20261107" defer></script>
+  <script src="assets/js/app.js?v=20261111" defer></script>
+</head>
+<body data-page="compare">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient-glow ambient-glow-a"></span>
+    <span class="ambient-glow ambient-glow-b"></span>
+    <span class="ambient-grid"></span>
+    <span class="ambient-noise"></span>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="电库图鉴，返回型号库">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><rect x="7.25" y="2.75" width="17.5" height="26.5" rx="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M17.2 7.8 11.8 17h4.1l-1.1 7.2 5.5-9.9h-4.2l1.1-6.5Z" fill="currentColor"/></svg>
+        </span>
+        <span class="brand-type"><strong>电库图鉴</strong></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="index.html" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/></svg><span>型号库</span></a>
+        <a href="compare.html" class="nav-link is-active" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/><path d="M8 3v4M16 10v4M10 17v4"/></svg><span>对比</span></a>
+      </nav>
+
+      <div class="header-tools">
+        <span class="header-status" id="headerStatus"><i aria-hidden="true"></i><span data-header-status>档案就绪</span></span>
+        <button class="icon-button theme-toggle" id="themeToggle" type="button" aria-label="切换浅色主题" title="切换主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 14.3A8.5 8.5 0 0 1 9.7 3.7 8.5 8.5 0 1 0 20.3 14.3Z"></path></svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav aria-label="移动端导航">
+        <a href="index.html">型号库</a>
+        <a href="compare.html">对比</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section page-shell page-intro" id="compare" aria-labelledby="compareTitle">
+      <div class="page-intro-row">
+        <div>
+          <h1 id="compareTitle">对比</h1>
+        </div>
+        <p class="page-intro-lede">选择 2–3 款并排查看规格、接口和曲线读数。</p>
+      </div>
+
+      <div class="compare-shell">
+        <div class="compare-slots" id="compareSlots">
+          <button class="compare-slot is-empty" type="button" data-compare-add><span class="compare-slot-plus" aria-hidden="true">+</span><span><strong>型号 A</strong><small>从型号库添加</small></span></button>
+          <button class="compare-slot is-empty" type="button" data-compare-add><span class="compare-slot-plus" aria-hidden="true">+</span><span><strong>型号 B</strong><small>从型号库添加</small></span></button>
+          <button class="compare-slot is-empty" type="button" data-compare-add><span class="compare-slot-plus" aria-hidden="true">+</span><span><strong>型号 C</strong><small>从型号库添加</small></span></button>
+        </div>
+
+        <div class="compare-table-wrap">
+          <div class="compare-empty">
+            <p>选两款型号，容量、能量、接口和曲线读数会在这里并排展开。</p>
+            <span class="compare-empty-hint">↑ 从上方空位或型号库加入对比</span>
+          </div>
+        </div>
+
+        <div class="compare-foot">
+          <p><span class="status-dot" aria-hidden="true"></span><span id="compareHint">对比席空闲中。先从型号库选择 2–3 款。</span></p>
+          <button class="text-button" type="button" id="compareClear" disabled>清空对比</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="compare-dock" id="compareDock" hidden>
+    <div class="compare-dock-label"><span>对比</span><strong><span id="compareCount">0</span> / 3</strong></div>
+    <div class="compare-dock-chips" id="compareChips"></div>
+    <div class="compare-dock-actions">
+      <button class="text-button" type="button" id="compareDockClear">清空</button>
+      <a class="button button-primary button-small" href="compare.html" id="compareDockGo">开始对比</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript">这个站点需要 JavaScript 来读取档案数据。请开启 JavaScript 后刷新。</div></noscript>
+</body>
+</html>

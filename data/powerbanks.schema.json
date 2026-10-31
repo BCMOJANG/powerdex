@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "电库图鉴数据文件",
+  "description": "充电宝型号、规格与充电曲线数据。时间为分钟，功率为瓦，容量为毫安时，能量为瓦时。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "meta", "brands", "devices"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "description", "version", "updatedAt"],
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "version": { "type": "integer", "minimum": 1 },
+        "updatedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    },
+    "brands": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/brand" }
+    },
+    "devices": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/device" }
+    }
+  },
+  "$defs": {
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "nameEn", "accent", "website", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "website": { "type": ["string", "null"], "format": "uri" },
+        "description": { "type": ["string", "null"] }
+      }
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "brandId",
+        "model",
+        "aliases",
+        "releaseYear",
+        "status",
+        "tags",
+        "images",
+        "specs",
+        "curves",
+        "notes",
+        "sources",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "brandId": { "type": "string" },
+        "model": { "type": "string", "minLength": 1 },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "releaseYear": { "type": ["integer", "null"], "minimum": 2000, "maximum": 2100 },
+        "status": { "enum": ["draft", "published"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "specs": { "$ref": "#/$defs/specs" },
+        "curves": { "type": "array", "items": { "$ref": "#/$defs/curve" } },
+        "dischargeTests": { "type": "array", "items": { "$ref": "#/$defs/dischargeTest" } },
+        "dischargeTestNote": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] },
+        "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "updatedAt": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "specs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capacityMah",
+        "ratedCapacityMah",
+        "energyWh",
+        "inputMaxW",
+        "outputMaxW",
+        "ports",
+        "protocols",
+        "weightG",
+        "dimensionsMm",
+        "priceCny",
+        "cellType"
+      ],
+      "properties": {
+        "capacityMah": { "type": ["number", "null"], "minimum": 0 },
+        "ratedCapacityMah": { "type": ["number", "null"], "minimum": 0 },
+        "energyWh": { "type": ["number", "null"], "minimum": 0 },
+        "inputMaxW": { "type": ["number", "null"], "minimum": 0 },
+        "outputMaxW": { "type": ["number", "null"], "minimum": 0 },
+        "ports": { "type": "array", "items": { "$ref": "#/$defs/port" } },
+        "protocols": { "type": "array", "items": { "type": "string" } },
+        "weightG": { "type": ["number", "null"], "minimum": 0 },
+        "dimensionsMm": { "$ref": "#/$defs/dimensions" },
+        "priceCny": { "type": ["number", "null"], "minimum": 0 },
+        "cellType": { "type": ["string", "null"] }
+      }
+    },
+    "port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "count", "maxW"],
+      "properties": {
+        "type": { "type": "string" },
+        "count": { "type": ["integer", "null"], "minimum": 1 },
+        "maxW": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["length", "width", "height"],
+      "properties": {
+        "length": { "type": ["number", "null"], "minimum": 0 },
+        "width": { "type": ["number", "null"], "minimum": 0 },
+        "height": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "dischargeTest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["powerW", "voltageV", "currentA", "durationMin", "capacityMah", "energyWh", "efficiencyPct"],
+      "properties": {
+        "powerW": { "type": ["number", "null"], "minimum": 0 },
+        "voltageV": { "type": ["number", "null"], "minimum": 0 },
+        "currentA": { "type": ["number", "null"], "minimum": 0 },
+        "durationMin": { "type": ["number", "null"], "minimum": 0 },
+        "capacityMah": { "type": ["number", "null"], "minimum": 0 },
+        "energyWh": { "type": ["number", "null"], "minimum": 0 },
+        "efficiencyPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 }
+      }
+    },
+    "curve": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "label", "conditions", "points"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["charge", "discharge"] },
+        "label": { "type": "string" },
+        "conditions": { "$ref": "#/$defs/conditions" },
+        "points": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/point" }
+        },
+        "summary": { "$ref": "#/$defs/curveSummary" },
+        "showPct": { "type": "boolean" }
+      }
+    },
+    "curveSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["peakW", "averageW"],
+      "properties": {
+        "peakW": { "type": ["number", "null"], "minimum": 0 },
+        "averageW": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "conditions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambientC", "startPct", "endPct", "charger", "cable", "note"],
+      "properties": {
+        "ambientC": { "type": ["number", "null"] },
+        "startPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "endPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "charger": { "type": ["string", "null"] },
+        "cable": { "type": ["string", "null"] },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t", "pct"],
+      "properties": {
+        "t": { "type": "number", "minimum": 0, "description": "从曲线起点开始的分钟数" },
+        "pct": { "type": "number", "minimum": 0, "maximum": 100, "description": "电池电量百分比" },
+        "w": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "该时刻的输入或输出功率，单位 W。未记录时可填 null，图表会只绘制电量曲线。"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "url", "date"],
+      "properties": {
+        "label": { "type": "string" },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "date": { "type": ["string", "null"], "format": "date" }
+      }
+    }
+  }
+}

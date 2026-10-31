@@ -1,0 +1,56 @@
+{
+  "id": "brand-model",
+  "brandId": "cuktech",
+  "model": "型号名称",
+  "aliases": [],
+  "releaseYear": null,
+  "status": "draft",
+  "tags": [],
+  "images": [],
+  "specs": {
+    "capacityMah": null,
+    "ratedCapacityMah": null,
+    "energyWh": null,
+    "inputMaxW": null,
+    "outputMaxW": null,
+    "ports": [
+      {
+        "type": "USB-C",
+        "count": null,
+        "maxW": null
+      }
+    ],
+    "protocols": [],
+    "weightG": null,
+    "dimensionsMm": {
+      "length": null,
+      "width": null,
+      "height": null
+    },
+    "priceCny": null,
+    "cellType": null
+  },
+  "curves": [
+    {
+      "id": "charge-standard",
+      "kind": "charge",
+      "label": "标准充电",
+      "conditions": {
+        "ambientC": null,
+        "startPct": null,
+        "endPct": null,
+        "charger": null,
+        "cable": null,
+        "note": null
+      },
+      "points": [],
+      "summary": {
+        "peakW": null,
+        "averageW": null
+      }
+    }
+  ],
+  "notes": null,
+  "sources": [],
+  "updatedAt": null
+}

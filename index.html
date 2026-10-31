@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3f3f3">
+  <title>型号库 · 电库图鉴</title>
+  <meta name="description" content="酷态科与安克充电宝的型号索引：容量、功率、接口、协议与曲线数量。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="型号库 · 电库图鉴">
+  <meta property="og:description" content="搜索、筛选、排序，进入每一款充电宝的完整档案。">
+  <meta property="og:image" content="assets/img/og-cover.png">
+  <link rel="icon" href="assets/img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261049">
+  <link rel="stylesheet" href="assets/css/fluent.css?v=20261110">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var saved = localStorage.getItem('atlas-theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    })();
+  </script>
+  <script src="assets/js/charts.js?v=20261107" defer></script>
+  <script src="assets/js/app.js?v=20261111" defer></script>
+</head>
+<body data-page="library">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient-glow ambient-glow-a"></span>
+    <span class="ambient-glow ambient-glow-b"></span>
+    <span class="ambient-grid"></span>
+    <span class="ambient-noise"></span>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="电库图鉴，返回型号库">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect x="7.25" y="2.75" width="17.5" height="26.5" rx="5.25" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M17.2 7.8 11.8 17h4.1l-1.1 7.2 5.5-9.9h-4.2l1.1-6.5Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-type"><strong>电库图鉴</strong></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="index.html" class="nav-link is-active" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/></svg><span>型号库</span></a>
+        <a href="compare.html" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/><path d="M8 3v4M16 10v4M10 17v4"/></svg><span>对比</span></a>
+      </nav>
+
+      <div class="header-tools">
+        <span class="header-status" id="headerStatus"><i aria-hidden="true"></i><span data-header-status>档案就绪</span></span>
+        <button class="icon-button theme-toggle" id="themeToggle" type="button" aria-label="切换浅色主题" title="切换主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 14.3A8.5 8.5 0 0 1 9.7 3.7 8.5 8.5 0 1 0 20.3 14.3Z"></path></svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav aria-label="移动端导航">
+        <a href="index.html">型号库</a>
+        <a href="compare.html">对比</a>
+        <a href="index.html?view=curves">全部曲线</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section page-shell page-intro" id="library" aria-labelledby="libraryTitle">
+      <div class="page-intro-row">
+        <div>
+          <h1 id="libraryTitle">型号库</h1>
+        </div>
+        <div class="page-intro-side">
+          <p class="page-intro-lede">已收录型号的规格与曲线索引。</p>
+          <div class="section-count"><strong data-library-count>00</strong><span>款已收录</span></div>
+        </div>
+      </div>
+
+      <div class="library-viewbar">
+        <div class="view-switch" role="tablist" aria-label="型号库视图">
+          <button class="view-switch-button is-active" type="button" data-library-view="cards" role="tab" aria-selected="true">型号卡片 <span data-view-count="cards">00</span></button>
+          <button class="view-switch-button" type="button" data-library-view="curves" role="tab" aria-selected="false">全部曲线 <span data-view-count="curves">00</span></button>
+        </div>
+      </div>
+
+      <div class="library-toolbar" role="search">
+        <label class="search-field" for="searchInput">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"></circle><path d="m13.5 13.5 4 4"></path></svg>
+          <input id="searchInput" type="search" placeholder="搜索型号、别名或关键词" autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+
+        <div class="filter-pills" role="group" aria-label="按品牌筛选">
+          <button class="filter-pill is-active" type="button" data-filter="all" aria-pressed="true">全部 <span data-filter-count="all">0</span></button>
+          <button class="filter-pill" type="button" data-filter="cuktech" aria-pressed="false">酷态科 <span data-filter-count="cuktech">0</span></button>
+          <button class="filter-pill" type="button" data-filter="anker" aria-pressed="false">安克 <span data-filter-count="anker">0</span></button>
+        </div>
+
+        <label class="sort-field" for="sortSelect" id="sortField">
+          <span>排序</span>
+          <select id="sortSelect">
+            <option value="default">默认</option>
+            <option value="capacity-desc">容量从高到低</option>
+            <option value="energy-desc">能量从高到低</option>
+            <option value="updated-desc">最近更新</option>
+          </select>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg>
+        </label>
+      </div>
+
+      <div id="cardView">
+        <div class="device-grid" id="deviceGrid" hidden></div>
+
+        <div class="library-empty is-simple" id="libraryEmpty">
+          <div class="empty-copy">
+            <h3 id="emptyTitle">还没有收录型号。</h3>
+            <p id="emptyCopy">数据更新后会显示在这里。</p>
+            <div class="empty-actions">
+              <button class="text-button" type="button" id="clearFilters" hidden>清除筛选</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="curve-view" id="curveView" hidden>
+        <div class="curve-toolbar">
+          <div class="curve-toolbar-head">
+            <h2>全部曲线</h2>
+            <p>叠加查看各型号曲线。</p>
+          </div>
+          <div class="curve-toolbar-filters">
+            <label class="curve-select">类型
+              <select id="curveKindFilter">
+                <option value="all">全部</option>
+                <option value="charge">充电</option>
+                <option value="discharge">放电</option>
+              </select>
+            </label>
+            <label class="curve-select">排序
+              <select id="curveSort">
+                <option value="default">按型号</option>
+                <option value="peak-desc">峰值从高到低</option>
+                <option value="speed-desc">30 分钟充入从高到低</option>
+                <option value="time-asc">充满用时从短到长</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="curve-summary" id="curveSummary">
+          <span><strong data-curve-count>00</strong> 条曲线</span>
+          <span><strong data-curve-models>00</strong> 款型号</span>
+          <span class="curve-summary-note" data-curve-note>等待曲线数据</span>
+        </div>
+
+        <div class="curve-explorer">
+          <div class="chart-card curve-explorer-chart">
+            <div class="chart-stage curve-overlay-stage" id="allCurveChart">
+              <div class="placeholder-chart" aria-hidden="true">
+                <span class="placeholder-y-label">功率 / W</span>
+                <span class="placeholder-x-label">时间 / min</span>
+                <span class="placeholder-grid"></span>
+                <span class="placeholder-dash"></span>
+                <span class="placeholder-crosshair"></span>
+                <div class="placeholder-message">
+                  <span class="placeholder-line" aria-hidden="true"></span>
+                  <strong>还没有曲线</strong>
+                  <small>在数据文件中添加曲线</small>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card-foot">
+              <div class="legend" id="allCurveLegend"></div>
+              <p class="chart-condition">悬停查看同一时刻的数值。</p>
+            </div>
+          </div>
+
+          <aside class="curve-index-card" aria-labelledby="curveIndexTitle">
+            <div class="curve-index-head">
+              <div>
+                <h3 id="curveIndexTitle">曲线索引</h3>
+              </div>
+              <span class="mono-label" data-curve-count-label>00</span>
+            </div>
+            <div class="curve-index-list" id="curveList"></div>
+            <div class="curve-index-empty" id="curveEmpty" hidden>
+              <strong>没有匹配的曲线。</strong>
+              <p>换一个品牌、型号关键词，或把曲线写入数据文件。</p>
+              <button class="text-button" type="button" id="curveClearFilters">清除筛选</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="compare-dock" id="compareDock" hidden>
+    <div class="compare-dock-label"><span>对比</span><strong><span id="compareCount">0</span> / 3</strong></div>
+    <div class="compare-dock-chips" id="compareChips"></div>
+    <div class="compare-dock-actions">
+      <button class="text-button" type="button" id="compareDockClear">清空</button>
+      <a class="button button-primary button-small" href="compare.html" id="compareDockGo">开始对比</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript">这个站点需要 JavaScript 来读取档案数据。请开启 JavaScript 后刷新。</div></noscript>
+</body>
+</html>

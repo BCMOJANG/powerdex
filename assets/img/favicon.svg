@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="电库图鉴">
+  <rect width="64" height="64" rx="16" fill="#0067C0"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="15.5" fill="none" stroke="#FFFFFF" stroke-opacity=".18"/>
+  <rect x="18.5" y="10.5" width="27" height="43" rx="8" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+  <path d="M35.6 18.5 26.2 32.4h7.2l-2 13.1 8.9-16.4h-7l2.3-10.6Z" fill="#FFFFFF"/>
+  <rect x="26" y="6" width="12" height="5" rx="2" fill="#FFFFFF" opacity=".55"/>
+</svg>
